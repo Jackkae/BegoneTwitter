@@ -1,0 +1,36 @@
+{
+	"manifest_version": 3,
+	"name": "Repress Twitter",
+	"version": "1.0.0",
+	"description": "Twitter is a very dangerous website, and so this extension was conceived to alleviate those dangers. :D",
+
+	"content_scripts": [
+	{
+			"js": [
+				"background.js"
+			],
+			"matches": [
+				"*://*.x.com/*"
+			]
+	}
+	],
+
+	"declarative_net_request" : {
+		"rule_resources" : [{
+		  "id": "1",
+		  "enabled": true,
+		  "path": "background.js",
+		  "action": { "type": "redirect", "redirect": {"url": "https://www.youtube.com/watch?v=XZPWdXK0U0w"} },
+		  "condition": { "urlFilter": "||x.com/", "resourceTypes": ["main_frame"] }
+		}]
+	 },
+	
+	"permissions": [
+		"declarativeNetRequestFeedback",
+		"declarativeNetRequest"
+	],
+	
+	"host_permissions": [
+		"*://*.x.com/*"
+	]
+}
